@@ -1,0 +1,1 @@
+(()=>{var t={546:t=>{t.exports=function(){console.log("this script create auto scroll with help get html element and scroll from and undo them")}}},r={};function e(o){var n=r[o];if(void 0!==n)return n.exports;var s=r[o]={exports:{}};return t[o](s,s.exports,e),s.exports}e(546)()})();

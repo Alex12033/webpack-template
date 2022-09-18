@@ -1,0 +1,195 @@
+// @use'scss/variables.scss';
+
+$colors: (
+  main: #00a0e3,
+  secondary: #1c2752,
+);
+
+@mixin media-max-width($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+.mobile-nav {
+  display: none;
+  position: fixed;
+  z-index: 101;
+  background: map-get($colors, main);
+  width: 50%;
+  height: 100%;
+  justify-content: center;
+  animation: slide-burger 1s forwards ease-in-out;
+
+  @include media-max-width(400px) {
+    width: 100%;
+    animation: slide-burger none;
+    animation: slide-burger-mobile 1s forwards ease-in-out;
+}
+
+  @keyframes slide-burger {
+    from {
+      transform: translateX(200%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes slide-burger-mobile {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
+}
+
+.hide-back {
+  animation: hide-back-anim 1s forwards ease-out;
+
+  @include media-max-width(400px) {
+    width: 100%;
+    animation: hide-back-anim none;
+    animation: hide-back-anim-mobile 1s forwards ease-in-out;
+}
+
+  @keyframes hide-back-anim {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(200%);
+    }
+  }
+
+  @keyframes hide-back-anim-mobile {
+    from {
+      transform: translateX(0%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+}
+
+.mobile-nav__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  @include media-max-width(400px) {
+    display: none;
+}
+}
+
+.mobile-nav__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.toggle-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: none;
+  width: 48px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  vertical-align: middle;
+
+  @include media-max-width(700px) {
+    display: block;
+  }
+
+  & :focus {
+    outline: none;
+  }
+
+  .toggle-button__bar {
+    width: 100%;
+    height: 3px;
+    background: map-get($colors, main);
+    display: block;
+    margin: 10px 0;
+  }
+}
+
+.mobile-nav__close {
+  position: fixed;
+  height: 55px;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+
+  svg {
+    &:hover,
+    &:active {
+      cursor: pointer;
+    }
+
+    &:hover line,
+    &:active line {
+      stroke: map-get($colors, secondary);
+    }
+  }
+
+  svg line {
+    stroke: white;
+    stroke-width: 10;
+  }
+}
+
+.mobile-nav__items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 25%;
+  list-style: none;
+  padding: 0;
+  text-align: center;
+
+  .mobile-nav__item {
+    padding: 8px;
+    a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 28px;
+
+      &:hover,
+      &:active {
+        color: map-get($colors, secondary);
+      }
+    }
+  }
+}
+
+.main-nav__questions-item {
+  background: map-get($colors, secondary);
+  padding: 15px;
+  margin: 20px;
+  font-size: 24px;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    color: white;
+
+    &:hover,
+    &:active {
+      color: map-get($colors, main);
+    }
+  }
+}
